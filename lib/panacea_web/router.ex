@@ -16,7 +16,7 @@ defmodule PanaceaWeb.Router do
   scope "/", PanaceaWeb do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", HomeController, :index
   end
 
   # Other scopes may use custom stacks.

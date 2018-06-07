@@ -1,4 +1,4 @@
-defmodule PanaceaWeb.PageController do
+defmodule PanaceaWeb.HomeController do
   use PanaceaWeb, :controller
 
   def index(conn, _params) do
