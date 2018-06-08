@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><%= gettext "Panacea" %></title>
+    <title><%= gettext "Panacea Admin" %></title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
@@ -16,7 +16,7 @@
       <div class="top-bar-left">
         <ul class="menu" role="menubar">
           <li class="menu-text" role="menuitem">
-            <%= gettext "Panacea" %>
+            <%= gettext "Panacea Admin" %>
           </li>
         </ul>
       </div>

@@ -9,6 +9,10 @@ defmodule PanaceaWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :admin do
+    plug :put_layout, {PanaceaWeb.LayoutView, :admin}
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -17,6 +21,13 @@ defmodule PanaceaWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", HomeController, :index
+  end
+
+  scope "/admin", PanaceaWeb.Admin do
+    pipe_through :browser
+    pipe_through :admin
+
+    get "/", DashboardController, :index
   end
 
   # Other scopes may use custom stacks.
