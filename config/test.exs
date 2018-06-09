@@ -12,8 +12,6 @@ config :logger, level: :warn
 # Configure your database
 config :panacea, Panacea.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
   database: "panacea_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox

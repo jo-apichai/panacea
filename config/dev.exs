@@ -50,8 +50,6 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :panacea, Panacea.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
   database: "panacea_dev",
   hostname: "localhost",
   pool_size: 10
