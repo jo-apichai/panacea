@@ -1,0 +1,11 @@
+<%= for {key, value} <- get_flash(@conn) do %>
+  <%= content_tag :div, class: "callout #{callout_class(key)}", data: [closable: ""] do %>
+    <div class="grid-container">
+      <button class="close-button" aria-label="Close alert" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <span><%= value %></span>
+    </div>
+  <% end %>
+<% end %>

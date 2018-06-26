@@ -22,6 +22,19 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:user_id]
 
+# Configures Guardian
+config :panacea, Panacea.Auth.Guardian,
+  issuer: "panacea",
+  secret_key: "lqGrxGerAq4GaFmtXm04kPeiO+h+AXlgWc0Kr1HJB7VopJQi8Ej3WJcKn2viIrYK"
+
+config :panacea, Panacea.Auth.Pipeline.Authenticated,
+  module: Panacea.Auth.Guardian,
+  error_handler: Panacea.Auth.AuthErrorHandler
+
+config :panacea, Panacea.Auth.Pipeline.Unauthenticated,
+  module: Panacea.Auth.Guardian,
+  error_handler: Panacea.Auth.AuthErrorHandler
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

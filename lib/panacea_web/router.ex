@@ -9,12 +9,18 @@ defmodule PanaceaWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :api do
+    plug :accepts, ["json"]
+  end
+
   pipeline :admin do
+    plug Panacea.Auth.Pipeline.Authenticated
     plug :put_layout, {PanaceaWeb.LayoutView, :admin}
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
+  pipeline :admin_unauth do
+    plug Panacea.Auth.Pipeline.Unauthenticated
+    plug :put_layout, {PanaceaWeb.LayoutView, :admin}
   end
 
   scope "/", PanaceaWeb do
@@ -23,11 +29,18 @@ defmodule PanaceaWeb.Router do
     get "/", HomeController, :index
   end
 
-  scope "/admin", PanaceaWeb.Admin do
-    pipe_through :browser
-    pipe_through :admin
+  scope "/admin", PanaceaWeb.Admin, as: :admin do
+    pipe_through [:browser, :admin_unauth]
+
+    get "/sign_in", SessionController, :new, as: :sign_in
+    post "/sign_in", SessionController, :create, as: :sign_in
+  end
+
+  scope "/admin", PanaceaWeb.Admin, as: :admin do
+    pipe_through [:browser, :admin]
 
     get "/", DashboardController, :index
+    get "/sign_out", SessionController, :delete, as: :sign_out
   end
 
   # Other scopes may use custom stacks.

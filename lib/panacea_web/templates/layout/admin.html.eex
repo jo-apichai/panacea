@@ -22,6 +22,8 @@
       </div>
     </div>
 
+    <%= render PanaceaWeb.LayoutView, "flash.html", assigns %>
+
     <main role="main">
       <%= render @view_module, @view_template, assigns %>
     </main>

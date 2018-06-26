@@ -1,0 +1,29 @@
+<div class="grid-container">
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3">
+      <div class="callout large sign-in-box">
+        <%= form_for @conn, admin_sign_in_path(@conn, :new), [as: :session], fn f -> %>
+          <div class="grid-x">
+            <div class="cell">
+              <label>
+                <%= gettext "Email" %>
+                <%= email_input f, :email %>
+              </label>
+            </div>
+            <div class="cell">
+              <label>
+                <%= gettext "Password" %>
+                <%= password_input f, :password %>
+              </label>
+            </div>
+            <div class="cell large-6 large-offset-3">
+              <button type="submit" class="button primary expanded">
+                <%= gettext "Sign in" %>
+              </button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
