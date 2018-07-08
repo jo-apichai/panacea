@@ -1,19 +1,19 @@
-defmodule Panacea.Products.Manufacturer do
+defmodule Panacea.Products.Product do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Panacea.Products.Product
+  alias Panacea.Products.Manufacturer
 
-  schema "manufacturers" do
+  schema "products" do
     field :name, :string
-    has_many :products, Product
+    belongs_to :manufacturer, Manufacturer
 
     timestamps()
   end
 
   @doc false
-  def changeset(manufacturer, attrs) do
-    manufacturer
+  def changeset(product, attrs) do
+    product
     |> cast(attrs, [:name])
     |> validate_required([:name])
     |> unique_constraint(:name)
